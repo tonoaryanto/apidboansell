@@ -49,6 +49,17 @@ class Rcdata extends REST_Controller {
         $where = ['kode_perusahaan'=>$kode_farm, 'kode_kandang'=>$kode_kandang];
         $cek_inidata = $this->umum_model->get('data_realtime',$where);
 
+        $house = $this->db->query("SELECT * FROM image2 WHERE kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
+        if($house['grow_value'] != ''){
+            if($house['grow_value'] > $data['growday']){
+                $data['periode'] = $house['periode'] + 1;
+            }else{
+                $data['periode'] = $house['periode'];
+            }
+        }else{
+            $data['periode'] = 1;
+        }
+
         if($cek_inidata->num_rows() == 1){
             $this->umum_model->update('data_realtime',$data,$where);
         }else{
@@ -141,5 +152,15 @@ class Rcdata extends REST_Controller {
             '0' => $kode,
             '1' => $value
             ];
+    }
+
+    public function nettime_get()
+    {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $ipInfo = file_get_contents('http://ip-api.com/json/' . $ip_address);
+        $ipInfo = json_decode($ipInfo);
+        $timezone = $ipInfo->timezone;
+        date_default_timezone_set($timezone);
+        $this->response(date('H:i:s'), REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 }
