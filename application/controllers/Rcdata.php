@@ -161,6 +161,6 @@ class Rcdata extends REST_Controller {
         $ipInfo = json_decode($ipInfo);
         $timezone = $ipInfo->timezone;
         date_default_timezone_set($timezone);
-        $this->response(date('H:i:s'), REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response(date('H').date('i'), REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 }
