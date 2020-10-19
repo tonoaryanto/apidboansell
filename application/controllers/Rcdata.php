@@ -147,6 +147,14 @@ class Rcdata extends REST_Controller {
             case "1301":
                 $kode = "feed";
                 break;
+            case "62001":
+                $kode = "max_windspeed";
+                $value = $value / 10;
+                break;
+            case "62002":
+                $kode = "min_windspeed";
+                $value = $value / 10;
+                break;
         }
         return [
             '0' => $kode,
