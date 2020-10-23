@@ -42,16 +42,18 @@ class Rcdata extends REST_Controller {
         $d = explode("x",$c);
         for ($i=0; $i < count($d); $i++) { 
             $e = explode("z",$d[$i]);
-            $cek_kode = $this->cek_kode($e[0],$e[1]);
-            $data[$cek_kode[0]] = $cek_kode[1];
+            if($e[0] > 0){
+                $cek_kode = $this->cek_kode($e[0],$e[1]);
+                $data[$cek_kode[0]] = $cek_kode[1];
+            }
         }
 
         $where = ['kode_perusahaan'=>$kode_farm, 'kode_kandang'=>$kode_kandang];
         $cek_inidata = $this->umum_model->get('data_realtime',$where);
 
-        $house = $this->db->query("SELECT * FROM image2 WHERE kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
-        if($house['grow_value'] != ''){
-            if($house['grow_value'] > $data['growday']){
+        $house = $this->db->query("SELECT growday,periode FROM data_record WHERE kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
+        if($house['growday'] != ''){
+            if($house['growday'] > $data['growday']){
                 $data['periode'] = $house['periode'] + 1;
             }else{
                 $data['periode'] = $house['periode'];

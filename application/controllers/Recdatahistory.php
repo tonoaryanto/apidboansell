@@ -18,7 +18,7 @@ class Recdatahistory extends CI_Controller {
 			$cekrealtime = $realtime->result();
 			foreach ($cekrealtime as $value) {
 				$jam = date_format(date_create($value->date_create),"Y-m-d H");
-				$esql1 = "SELECT * FROM data_record WHERE kode_perusahaan = '".$value->kode_perusahaan."' AND kode_kandang = '".$value->kode_kandang."'";
+				$esql1 = "SELECT * FROM data_record WHERE kode_perusahaan = '".$value->kode_perusahaan."' AND kode_kandang = '".$value->kode_kandang."' ORDER BY date_create DESC Limit 1";
 				$house = $this->db->query($esql1)->row_array();
 
 				if($house['growday'] != ''){
@@ -29,6 +29,10 @@ class Recdatahistory extends CI_Controller {
 						$this->umum_model->insert('data_record',$setdata);
 						echo 'simpan data terbaru';
 					}
+					echo '<br>';
+					echo $jam2;
+					echo '<br>';
+					echo $jam;
 				}
 			}
 		}
