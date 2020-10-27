@@ -60,6 +60,11 @@ class Recimageii extends CI_Controller {
                 }
             }
         }
+
+        $cekimage2 = $this->db->query("SELECT id FROM image2")->num_rows();
+        if($cekimage2 == 0){
+            $this->db->query("ALTER TABLE `image2` auto_increment = 1;");
+        }
     }
 
 }
