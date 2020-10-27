@@ -43,8 +43,10 @@ class Rcdata extends REST_Controller {
         for ($i=0; $i < count($d); $i++) { 
             $e = explode("z",$d[$i]);
             if($e[0] > 0){
-                $cek_kode = $this->cek_kode($e[0],$e[1]);
-                $data[$cek_kode[0]] = $cek_kode[1];
+                $cek_kode = $this->umum_model->cek_kode($e[0],$e[1]);
+                if($cek_kode[2] == '1'){
+                    $data[$cek_kode[0]] = $cek_kode[1];
+                }
             }
         }
 
@@ -76,92 +78,6 @@ class Rcdata extends REST_Controller {
                 'message' => 'Bad Reuest'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
-    }
-
-    private function cek_kode($kode,$value){
-        switch ($kode) {
-            case "4096":
-                $kode = "req_temp";
-                $value = $value / 10;
-                break;
-            case "7218":
-                $kode = "avg_temp";
-                $value = $value / 10;
-                break;
-            case "7197":
-                $kode = "temp_1";
-                $value = $value / 10;
-                break;
-            case "7198":
-                $kode = "temp_2";
-                $value = $value / 10;
-                break;
-            case "7199":
-                $kode = "temp_3";
-                $value = $value / 10;
-                break;
-            case "7200":
-                $kode = "temp_4";
-                $value = $value / 10;
-                break;
-            case "7203":
-                $kode = "temp_out";
-                $value = $value / 10;
-                break;
-            case "3142":
-                $kode = "humidity";
-                break;
-            case "3190":
-                $kode = "fan";
-                break;
-            case "800":
-                $kode = "growday";
-                break;
-            case "3259":
-                $kode = "static_pressure";
-                break;
-            case "64760":
-                $kode = "req_windspeed";
-                $value = $value / 10;
-                break;
-            case "64763":
-                $kode = "windspeed";
-                $value = $value / 10;
-                break;
-            case "35967":
-                $kode = "silo1";
-                break;
-            case "35969":
-                $kode = "silo2";
-                break;
-            case "3154":
-                $kode = "alarm1";
-                break;
-            case "3170":
-                $kode = "alarm2";
-                break;
-            case "3708":
-                $kode = "alarm3";
-                break;
-            case "1302":
-                $kode = "water";
-                break;
-            case "1301":
-                $kode = "feed";
-                break;
-            case "62001":
-                $kode = "max_windspeed";
-                $value = $value / 10;
-                break;
-            case "62002":
-                $kode = "min_windspeed";
-                $value = $value / 10;
-                break;
-        }
-        return [
-            '0' => $kode,
-            '1' => $value
-            ];
     }
 
     public function nettime_get()
