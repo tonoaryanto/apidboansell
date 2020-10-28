@@ -46,13 +46,19 @@ class Recimageii extends CI_Controller {
                     $this->umum_model->delete('image2',['id'=>$value->id]);
                 }
 
-                $datadel = $this->db->query("SELECT id,req_temp FROM `data_record` where date_record like '%00:00:00%'")->result();
+                $datadel = $this->db->query("SELECT id,kode_perusahaan,kode_kandang,date_record,feed,water FROM `data_record` where req_temp IS NULL")->result();
 
                 $isideldata = [];
                 foreach ($datadel as $value) {
-                    if($value->req_temp == null){
-                        $isideldata[] = $value->id;
-                    }
+                    $isiupdata = [];
+                    $whereupdata = [];
+                    $whereupdata['kode_perusahaan'] = $value->kode_perusahaan;
+                    $whereupdata['kode_kandang'] = $value->kode_kandang;
+                    $whereupdata['date_record'] = $value->date_record;
+                    $isiupdata['water'] = $value->water;
+                    $isiupdata['feed'] = $value->feed;
+                    $this->umum_model->update('data_record',$isiupdata,$whereupdata);
+                    $isideldata[] = $value->id;
                 }
 
                 if(count($isideldata) > 0){
