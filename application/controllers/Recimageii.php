@@ -45,31 +45,31 @@ class Recimageii extends CI_Controller {
                     }
                     $this->umum_model->delete('image2',['id'=>$value->id]);
                 }
-
-                $datadel = $this->db->query("SELECT id,kode_perusahaan,kode_kandang,date_record,feed,water FROM `data_record` where req_temp IS NULL")->result();
-
-                $isideldata = [];
-                foreach ($datadel as $value) {
-                    $isiupdata = [];
-                    $whereupdata = [];
-                    $whereupdata['kode_perusahaan'] = $value->kode_perusahaan;
-                    $whereupdata['kode_kandang'] = $value->kode_kandang;
-                    $whereupdata['date_record'] = $value->date_record;
-                    $isiupdata['water'] = $value->water;
-                    $isiupdata['feed'] = $value->feed;
-                    $this->umum_model->update('data_record',$isiupdata,$whereupdata);
-                    $isideldata[] = $value->id;
-                }
-
-                if(count($isideldata) > 0){
-                    $this->umum_model->delete_multi('data_record','id',$isideldata);
-                }
             }
-        }
 
-        $cekimage2 = $this->db->query("SELECT id FROM image2")->num_rows();
-        if($cekimage2 == 0){
-            $this->db->query("ALTER TABLE `image2` auto_increment = 1;");
+            $datadel = $this->db->query("SELECT id,kode_perusahaan,kode_kandang,date_record,feed,water FROM `data_record` where req_temp IS NULL")->result();
+
+            $isideldata = [];
+            foreach ($datadel as $value) {
+                $isiupdata = [];
+                $whereupdata = [];
+                $whereupdata['kode_perusahaan'] = $value->kode_perusahaan;
+                $whereupdata['kode_kandang'] = $value->kode_kandang;
+                $whereupdata['date_record'] = $value->date_record;
+                $isiupdata['water'] = $value->water;
+                $isiupdata['feed'] = $value->feed;
+                $this->umum_model->update('data_record',$isiupdata,$whereupdata);
+                $isideldata[] = $value->id;
+            }
+
+            if(count($isideldata) > 0){
+                $this->umum_model->delete_multi('data_record','id',$isideldata);
+            }
+
+            $cekimage2 = $this->db->query("SELECT id FROM image2")->num_rows();
+            if($cekimage2 == 0){
+                $this->db->query("ALTER TABLE `image2` auto_increment = 1;");
+            }
         }
     }
 
