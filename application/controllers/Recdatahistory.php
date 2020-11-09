@@ -29,11 +29,17 @@ class Recdatahistory extends CI_Controller {
 						$setdata['date_record'] = $jam;
 						$this->umum_model->insert('data_record',$setdata);
 						echo 'simpan data terbaru';
+						echo '<br>';
+						echo $jam2;
+						echo '<br>';
+						echo $jam;
+					}else{
+						echo 'Tidak ada data terbaru';
+						echo '<br>';
+						echo $jam2;
+						echo '<br>';
+						echo $jam;
 					}
-					echo '<br>';
-					echo $jam2;
-					echo '<br>';
-					echo $jam;
 				}else{
 					$setdata = $realtime->row_array($urutan);
 					$setdata['date_record'] = $jam;
@@ -43,6 +49,7 @@ class Recdatahistory extends CI_Controller {
 					echo $jam;
 				}
 				$urutan = $urutan + 1;
+				echo '<br>';
 			}
 		}
 	}
