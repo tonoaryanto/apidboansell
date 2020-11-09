@@ -16,6 +16,7 @@ class Recdatahistory extends CI_Controller {
 		if($data == '616e73656c6c6a617961696e646f6e65736961'){
 			$realtime = $this->db->query("SELECT `kode_perusahaan`, `kode_kandang`, `req_temp`, `avg_temp`, `temp_1`, `temp_2`, `temp_3`, `temp_4`, `temp_out`, `humidity`, `fan`, `growday`, `static_pressure`, `req_windspeed`, `windspeed`, `silo1`, `silo2`, `alarm1`, `alarm2`, `alarm3`, `water`, `feed`, `min_windspeed`, `max_windspeed`, `date_create`,`periode` FROM data_realtime");
 			$cekrealtime = $realtime->result();
+			$urutan = 0;
 			foreach ($cekrealtime as $value) {
 				$jam = date_format(date_create($value->date_create),"Y-m-d H");
 				$esql1 = "SELECT * FROM data_record WHERE kode_perusahaan = '".$value->kode_perusahaan."' AND kode_kandang = '".$value->kode_kandang."' ORDER BY date_create DESC Limit 1";
@@ -24,7 +25,7 @@ class Recdatahistory extends CI_Controller {
 				if($house['growday'] != ''){
 					$jam2 = date_format(date_create($house['date_create']),"Y-m-d H");
 					if($jam > $jam2){
-						$setdata = $realtime->row_array();
+						$setdata = $realtime->row_array($urutan);
 						$setdata['date_record'] = $jam;
 						$this->umum_model->insert('data_record',$setdata);
 						echo 'simpan data terbaru';
@@ -33,7 +34,15 @@ class Recdatahistory extends CI_Controller {
 					echo $jam2;
 					echo '<br>';
 					echo $jam;
+				}else{
+					$setdata = $realtime->row_array($urutan);
+					$setdata['date_record'] = $jam;
+					$this->umum_model->insert('data_record',$setdata);
+					echo 'simpan First data';
+					echo '<br>';
+					echo $jam;
 				}
+				$urutan = $urutan + 1;
 			}
 		}
 	}
