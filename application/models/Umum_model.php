@@ -58,7 +58,7 @@ class Umum_model extends CI_Model {
 
     function cek_kode($kode,$value,$kategori=null){
         $cek = 0;
-        if($value == 8888){$value == '';}
+        if($value == 8888){$value = NULL;}
         switch ($kode) {
             case "4096":
                 $kode = "req_temp";
