@@ -291,6 +291,94 @@ class Umum_model extends CI_Model {
                     $cek = 1;
                 }
                 break;
+            case "1388":
+                $kode = "eggcounter1";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1389":
+                $kode = "eggcounter2";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1390":
+                $kode = "eggcounter3";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1391":
+                $kode = "eggcounter4";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1392":
+                $kode = "eggcounter5";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1393":
+                $kode = "eggcounter6";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1394":
+                $kode = "eggcounter7";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
+            case "1395":
+                $kode = "eggcounter8";
+                $value = $value;
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
         }
         return [
             '0' => $kode,
