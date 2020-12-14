@@ -187,14 +187,42 @@ class Recdatahistory extends CI_Controller {
 		$vsetdata['date_create'] = $setdata["date_create"];
 		$vsetdata['periode'] = $setdata["periode"];
 
-		$vsetdata2['eggcounter1'] = $setdata["eggcounter1"];
-		$vsetdata2['eggcounter2'] = $setdata["eggcounter2"];
-		$vsetdata2['eggcounter3'] = $setdata["eggcounter3"];
-		$vsetdata2['eggcounter4'] = $setdata["eggcounter4"];
-		$vsetdata2['eggcounter5'] = $setdata["eggcounter5"];
-		$vsetdata2['eggcounter6'] = $setdata["eggcounter6"];
-		$vsetdata2['eggcounter7'] = $setdata["eggcounter7"];
-		$vsetdata2['eggcounter8'] = $setdata["eggcounter8"];
+		if($setdata["eggcounter1"] == '8888' or $setdata["eggcounter1"] == '7777' or $setdata["eggcounter1"] == '9999'){$egg1 = -1;
+		}else{$egg1 = $setdata["eggcounter1"];}
+		if($setdata["eggcounter2"] == '8888' or $setdata["eggcounter2"] == '7777' or $setdata["eggcounter2"] == '9999'){$egg2 = -1;
+		}else{$egg2 = $setdata["eggcounter2"];}
+		if($setdata["eggcounter3"] == '8888' or $setdata["eggcounter3"] == '7777' or $setdata["eggcounter3"] == '9999'){$egg3 = -1;
+		}else{$egg3 = $setdata["eggcounter3"];}
+		if($setdata["eggcounter4"] == '8888' or $setdata["eggcounter4"] == '7777' or $setdata["eggcounter4"] == '9999'){$egg4 = -1;
+		}else{$egg4 = $setdata["eggcounter4"];}
+		if($setdata["eggcounter5"] == '8888' or $setdata["eggcounter5"] == '7777' or $setdata["eggcounter5"] == '9999'){$egg5 = -1;
+		}else{$egg5 = $setdata["eggcounter5"];}
+		if($setdata["eggcounter6"] == '8888' or $setdata["eggcounter6"] == '7777' or $setdata["eggcounter6"] == '9999'){$egg6 = -1;
+		}else{$egg6 = $setdata["eggcounter6"];}
+		if($setdata["eggcounter7"] == '8888' or $setdata["eggcounter7"] == '7777' or $setdata["eggcounter7"] == '9999'){$egg7 = -1;
+		}else{$egg7 = $setdata["eggcounter7"];}
+		if($setdata["eggcounter8"] == '8888' or $setdata["eggcounter8"] == '7777' or $setdata["eggcounter8"] == '9999'){$egg8 = -1;
+		}else{$egg8 = $setdata["eggcounter8"];}
+
+		$vsetdata2['eggcounter1'] = $egg1;
+		$vsetdata2['eggcounter2'] = $egg2;
+		$vsetdata2['eggcounter3'] = $egg3;
+		$vsetdata2['eggcounter4'] = $egg4;
+		$vsetdata2['eggcounter5'] = $egg5;
+		$vsetdata2['eggcounter6'] = $egg6;
+		$vsetdata2['eggcounter7'] = $egg7;
+		$vsetdata2['eggcounter8'] = $egg8;
+
+		if($egg1 == -1){$egg1 = 0;}
+		if($egg2 == -1){$egg2 = 0;}
+		if($egg3 == -1){$egg3 = 0;}
+		if($egg4 == -1){$egg4 = 0;}
+		if($egg5 == -1){$egg5 = 0;}
+		if($egg6 == -1){$egg6 = 0;}
+		if($egg7 == -1){$egg7 = 0;}
+		if($egg8 == -1){$egg8 = 0;}
+
+		$vsetdata2['sumegg'] = $egg1 + $egg2 + $egg3 + $egg4 + $egg5 + $egg6 + $egg7 + $egg8;
 
 		if($dt == 'house'){return $vsetdata;}
 		if($dt == 'egg'){return $vsetdata2;}
