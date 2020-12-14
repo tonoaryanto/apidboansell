@@ -63,12 +63,11 @@ class Recdatahistory extends CI_Controller {
 
 		//Record data egg counter
 		if($data == '64617461656767636f756e746572'){
-
 			$realtime = $this->dbrealtime();
 			$cekrealtime = $realtime->result();
 			$urutan = 0;
 			foreach ($cekrealtime as $value) {
-				$jam = date_format(date_create($value->date_create),"Y-m-d H");
+				$jam = date_format(date_create($value->date_create),"Y-m-d");
 				$esql1 = "SELECT * FROM data_record WHERE kode_perusahaan = '".$value->kode_perusahaan."' AND kode_kandang = '".$value->kode_kandang."' ORDER BY date_create DESC Limit 1";
 				$house = $this->db->query($esql1)->row_array();
 
@@ -80,7 +79,7 @@ class Recdatahistory extends CI_Controller {
 				$house2 = $this->db->query($esql2)->row_array();
 
 				if($house2['growday'] != ''){
-					$jam21 = date_format(date_create($house2['date_create']),"Y-m-d H");
+					$jam21 = date_format(date_create($house2['date_create']),"Y-m-d");
 					if($jam > $jam21){
 						$this->umum_model->insert('data_eggcounter',$vsetdata2);
 						echo 'Egg simpan data terbaru';
