@@ -27,7 +27,6 @@ class Rcdata extends REST_Controller {
 
     public function dhouse_get()
     {
-        // Users from a data store e.g. database
         $kode_farm = $this->get('69646661726d');
         $kode_kandang = $this->get('6964686f757365');
         $isidata = $this->get('a64617461');
@@ -57,7 +56,7 @@ class Rcdata extends REST_Controller {
         $house2 = $this->db->query("SELECT growday FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
 
         if($house2['growday'] != ''){
-            if($house2['growday'] > $data['growday']){
+            if((int)$house2['growday'] > (int)$data['growday']){
                 $data['keterangan'] = 'growchange';
             }
         }
@@ -106,7 +105,7 @@ class Rcdata extends REST_Controller {
         }else{
             $this->umum_model->insert('data_realtime',$data);
         }
-        // Check if the users data store contains users (in case the database result returns NULL)
+
         if ($kode_farm != '' AND $kode_kandang != '' AND $isidata != ''){
             $this->response("OK", REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         }else{
