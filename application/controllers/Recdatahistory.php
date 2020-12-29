@@ -32,7 +32,7 @@ class Recdatahistory extends CI_Controller {
 
 				if($house['growday'] != ''){
 					$jam2 = date_format(date_create($house['date_create']),"Y-m-d H");
-					if($jam > $jam2){			
+					if($jam > $jam2){
 						$this->umum_model->insert('data_record',$vsetdata);
 						echo 'Hs simpan data terbaru';
 						echo '<br>';
