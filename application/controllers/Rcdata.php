@@ -57,7 +57,7 @@ class Rcdata extends REST_Controller {
         $house2 = $this->db->query("SELECT growday FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
 
         if($house2['growday'] != ''){
-            if($data['growday'] < $house2['growday']){
+            if($house2['growday'] > $data['growday']){
                 $data['keterangan'] = 'growchange';
             }
         }
