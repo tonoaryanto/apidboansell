@@ -63,40 +63,61 @@ class Rcdata extends REST_Controller {
 
         $data['periode'] = $house['flock'];
 
-        if($data["eggcounter1"] == '8888' or $data["eggcounter1"] == '7777' or $data["eggcounter1"] == '9999'){$egg1 = -1;
-		}else{$egg1 = $data["eggcounter1"];}
-		if($data["eggcounter2"] == '8888' or $data["eggcounter2"] == '7777' or $data["eggcounter2"] == '9999'){$egg2 = -1;
-		}else{$egg2 = $data["eggcounter2"];}
-		if($data["eggcounter3"] == '8888' or $data["eggcounter3"] == '7777' or $data["eggcounter3"] == '9999'){$egg3 = -1;
-		}else{$egg3 = $data["eggcounter3"];}
-		if($data["eggcounter4"] == '8888' or $data["eggcounter4"] == '7777' or $data["eggcounter4"] == '9999'){$egg4 = -1;
-		}else{$egg4 = $data["eggcounter4"];}
-		if($data["eggcounter5"] == '8888' or $data["eggcounter5"] == '7777' or $data["eggcounter5"] == '9999'){$egg5 = -1;
-		}else{$egg5 = $data["eggcounter5"];}
-		if($data["eggcounter6"] == '8888' or $data["eggcounter6"] == '7777' or $data["eggcounter6"] == '9999'){$egg6 = -1;
-		}else{$egg6 = $data["eggcounter6"];}
-		if($data["eggcounter7"] == '8888' or $data["eggcounter7"] == '7777' or $data["eggcounter7"] == '9999'){$egg7 = -1;
-		}else{$egg7 = $data["eggcounter7"];}
-		if($data["eggcounter8"] == '8888' or $data["eggcounter8"] == '7777' or $data["eggcounter8"] == '9999'){$egg8 = -1;
-		}else{$egg8 = $data["eggcounter8"];}
+		$egg1 = 0;
+		$egg2 = 0;
+		$egg3 = 0;
+		$egg4 = 0;
+		$egg5 = 0;
+		$egg6 = 0;
+		$egg7 = 0;
+		$egg8 = 0;
 
-		$data['eggcounter1'] = $egg1;
-		$data['eggcounter2'] = $egg2;
-		$data['eggcounter3'] = $egg3;
-		$data['eggcounter4'] = $egg4;
-		$data['eggcounter5'] = $egg5;
-		$data['eggcounter6'] = $egg6;
-		$data['eggcounter7'] = $egg7;
-		$data['eggcounter8'] = $egg8;
+        if(isset($data["eggcounter1"])){
+            if($data["eggcounter1"] == '8888' or $data["eggcounter1"] == '7777' or $data["eggcounter1"] == '9999'){$egg1 = 0;
+            }else{$egg1 = $data["eggcounter1"];}
+            $data['eggcounter1'] = $egg1;
+        }
 
-		if($egg1 == -1){$egg1 = 0;}
-		if($egg2 == -1){$egg2 = 0;}
-		if($egg3 == -1){$egg3 = 0;}
-		if($egg4 == -1){$egg4 = 0;}
-		if($egg5 == -1){$egg5 = 0;}
-		if($egg6 == -1){$egg6 = 0;}
-		if($egg7 == -1){$egg7 = 0;}
-		if($egg8 == -1){$egg8 = 0;}
+        if(isset($data["eggcounter2"]) != ''){
+            if($data["eggcounter2"] == '8888' or $data["eggcounter2"] == '7777' or $data["eggcounter2"] == '9999'){$egg2 = 0;
+            }else{$egg2 = $data["eggcounter2"];}
+            $data['eggcounter2'] = $egg2;
+        }
+        if(isset($data["eggcounter3"]) != ''){
+            if($data["eggcounter3"] == '8888' or $data["eggcounter3"] == '7777' or $data["eggcounter3"] == '9999'){$egg3 = 0;
+            }else{$egg3 = $data["eggcounter3"];}
+            $data['eggcounter3'] = $egg3;
+        }
+
+        if(isset($data["eggcounter4"]) != ''){
+            if($data["eggcounter4"] == '8888' or $data["eggcounter4"] == '7777' or $data["eggcounter4"] == '9999'){$egg4 = 0;
+            }else{$egg4 = $data["eggcounter4"];}
+            $data['eggcounter4'] = $egg4;
+        }
+
+        if(isset($data["eggcounter5"]) != ''){
+            if($data["eggcounter5"] == '8888' or $data["eggcounter5"] == '7777' or $data["eggcounter5"] == '9999'){$egg5 = 0;
+            }else{$egg5 = $data["eggcounter5"];}
+            $data['eggcounter5'] = $egg5;
+        }
+
+        if(isset($data["eggcounter6"]) != ''){
+            if($data["eggcounter6"] == '8888' or $data["eggcounter6"] == '7777' or $data["eggcounter6"] == '9999'){$egg6 = 0;
+            }else{$egg6 = $data["eggcounter6"];}
+            $data['eggcounter6'] = $egg6;
+        }
+
+        if(isset($data["eggcounter7"]) != ''){
+            if($data["eggcounter7"] == '8888' or $data["eggcounter7"] == '7777' or $data["eggcounter7"] == '9999'){$egg7 = 0;
+            }else{$egg7 = $data["eggcounter7"];}
+            $data['eggcounter7'] = $egg7;
+        }
+
+        if(isset($data["eggcounter8"]) != ''){
+            if($data["eggcounter8"] == '8888' or $data["eggcounter8"] == '7777' or $data["eggcounter8"] == '9999'){$egg8 = 0;
+            }else{$egg8 = $data["eggcounter8"];}
+            $data['eggcounter8'] = $egg8;
+        }
 
         $data['sumegg'] = $egg1 + $egg2 + $egg3 + $egg4 + $egg5 + $egg6 + $egg7 + $egg8;
 
