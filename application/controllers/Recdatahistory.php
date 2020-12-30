@@ -147,6 +147,7 @@ class Recdatahistory extends CI_Controller {
 		$isiesql .= ",eggcounter7";
 		$isiesql .= ",eggcounter8";
 		$isiesql .= ",sumegg";
+		$isiesql .= ",keterangan";
 
 		$realtime = $this->db->query("SELECT ".$isiesql." FROM data_realtime");
 		return $realtime;
@@ -160,6 +161,7 @@ class Recdatahistory extends CI_Controller {
 		$vsetdata['growday'] = $setdata["growday"];
 		$vsetdata['date_create'] = $setdata["date_create"];
 		$vsetdata['date_record'] = $jam;
+		$vsetdata['keterangan'] = $setdata["keterangan"];
 
 		$vsetdata2 = $vsetdata;
 
