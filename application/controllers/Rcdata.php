@@ -53,7 +53,7 @@ class Rcdata extends REST_Controller {
         $cek_inidata = $this->umum_model->get('data_realtime',$where);
 
         $house = $this->db->query("SELECT flock FROM data_kandang WHERE id = '".$kode_kandang."'")->row_array();
-        $house2 = $this->db->query("SELECT growday FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC LIMIT 1")->row_array();
+        $house2 = $this->db->query("SELECT growday FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC, growday DESC LIMIT 1")->row_array();
 
         if($house2['growday'] != ''){
             if((int)$house2['growday'] > (int)$data['growday']){
