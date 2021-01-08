@@ -379,6 +379,19 @@ class Umum_model extends CI_Model {
                     $cek = 1;
                 }
                 break;
+            case "23489":
+                $kode = "reset_time";
+                $rawvalue = dechex($value);
+                $jam = str_split($rawvalue,2)[0].":".str_split($rawvalue,2)[1].":00";
+                $value = date_format(date_create($jam),"H:i:s");
+                if($kategori != null){
+                    if($kategori == 'HOUR_1'){
+                        $cek = 1;
+                    }
+                }else{
+                    $cek = 1;
+                }
+                break;
         }
         return [
             '0' => $kode,
