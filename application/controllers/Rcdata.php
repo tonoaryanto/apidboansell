@@ -61,6 +61,8 @@ class Rcdata extends REST_Controller {
             }else{
                 $data['keterangan'] = 'ok';
             }
+        }else{
+            $data['keterangan'] = 'ok';
         }
 
         $data['periode'] = $house['flock'];
