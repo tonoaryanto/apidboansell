@@ -23,7 +23,7 @@ class Gtwa extends REST_Controller {
         $data = [];
         if($cek_inidata->num_rows() > 0){
             if($kode_kandang == 'all' or $kode_kandang == ''){
-                $rawhouse = $this->db->query("SELECT `date_create`, `req_temp`, `avg_temp`, `temp_1`, `temp_2`, `temp_3`, `temp_4`, `temp_out`, `humidity`, `fan`, `growday`, `static_pressure`, `windspeed`, `silo1`, `water`, `periode` FROM data_realtime WHERE kode_perusahaan = '".$datalogin['id_user']."'")->result();
+                $rawhouse = $this->db->query("SELECT data_kandang.nama_kandang, data_realtime.date_create, data_realtime.req_temp, data_realtime.avg_temp, data_realtime.temp_1, data_realtime.temp_2, data_realtime.temp_3, data_realtime.temp_4, data_realtime.temp_out, data_realtime.humidity, data_realtime.fan, data_realtime.growday, data_realtime.static_pressure, data_realtime.windspeed, data_realtime.silo1, data_realtime.water, data_realtime.periode FROM data_realtime LEFT JOIN data_kandang ON data_realtime.kode_kandang = data_kandang.id WHERE data_realtime.kode_perusahaan = '".$datalogin['id_user']."'")->result();
                 $house['status'] = true;
                 $house['data'] = $rawhouse;
                 echo json_encode($house);
