@@ -23,6 +23,7 @@ class Rcdata extends REST_Controller {
         // Construct the parent class
         parent::__construct();
         $this->load->model('umum_model');
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function dhouse_get()
@@ -53,19 +54,28 @@ class Rcdata extends REST_Controller {
         $cek_inidata = $this->umum_model->get('data_realtime',$where);
 
         $house = $this->db->query("SELECT flock FROM data_kandang WHERE id = '".$kode_kandang."'")->row_array();
-        $house2 = $this->db->query("SELECT growday,keterangan FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC, growday DESC LIMIT 1")->row_array();
+        $house2 = $this->db->query("SELECT growday,keterangan,reset_time FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC, growday DESC LIMIT 1")->row_array();
+
+        $data['periode'] = $house['flock'];
 
         if($house2['growday'] != ''){
-            if((int)$house2['growday'] > (int)$data['growday'] or $house2['growday'] == 'growchange'){
+            if((int)$house2['growday'] > (int)$data['growday'] or $house2['keterangan'] == 'growchange'){
                 $data['keterangan'] = 'growchange';
             }else{
-                $data['keterangan'] = 'ok';
+                $jamreset = date_format(date_create($data['reset_time']),"H");
+                $jamnow = date_format(date_create(date("H:i:s")),"H");
+                $jamnow1 = date_format(date_create(date("H:i:s")),"H:i:s");
+
+                if((int)$data['growday'] == (int)$house2['growday'] AND (int)$jamnow >= (int)$jamreset){
+                    $data['growday'] = (int)$data['growday'] + 1;
+                    $data['keterangan'] = 'ok';
+                }else{
+                    $data['keterangan'] = $jamreset.' - '.$jamnow1;
+                }
             }
         }else{
             $data['keterangan'] = 'ok';
         }
-
-        $data['periode'] = $house['flock'];
 
 		$egg1 = 0;
 		$egg2 = 0;

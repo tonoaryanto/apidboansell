@@ -382,6 +382,7 @@ class Umum_model extends CI_Model {
             case "23489":
                 $kode = "reset_time";
                 $rawvalue = dechex($value);
+                $rawvalue = str_pad($rawvalue,4,"0",STR_PAD_LEFT);
                 $jam = str_split($rawvalue,2)[0].":".str_split($rawvalue,2)[1].":00";
                 $value = date_format(date_create($jam),"H:i:s");
                 if($kategori != null){
