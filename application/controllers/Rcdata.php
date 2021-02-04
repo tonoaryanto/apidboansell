@@ -53,20 +53,27 @@ class Rcdata extends REST_Controller {
         $where = ['kode_perusahaan'=>$kode_farm, 'kode_kandang'=>$kode_kandang];
         $cek_inidata = $this->umum_model->get('data_realtime',$where);
 
-        $house = $this->db->query("SELECT flock FROM data_kandang WHERE id = '".$kode_kandang."'")->row_array();
+        $house = $this->db->query("SELECT * FROM data_kandang WHERE id = '".$kode_kandang."'")->row_array();
         $house2 = $this->db->query("SELECT growday,keterangan,reset_time FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC, growday DESC LIMIT 1")->row_array();
 
         $data['periode'] = $house['flock'];
         $data['date_create'] = date_format(date_create(date("Y-m-d H:i:s")),"Y-m-d H:i:s");
+        $date_now = date_format(date_create($data['date_create']),"Y-m-d H").":00:00";
 
+        $date_in = date_format(date_create($house['date_in']),"Y-m-d")." ".date_format(date_create($house['reset_time']),"H:i:s");
+        $difftgl1 = date_diff(date_create($date_in),date_create($date_now));
+        $data['reset_time'] = $house['reset_time'];
+
+        $growawal = (int)$house['star_growday'] + (int)$difftgl1->format("%R%a");
+
+        $data['keterangan'] = 'ok';
+        if((int)$growawal != (int)$data['growday']){
+            $data['keterangan'] = 'growchange';
+        }
         if($house2['growday'] != ''){
-            if((int)$house2['growday'] > (int)$data['growday'] or $house2['keterangan'] == 'growchange'){
-                $data['keterangan'] = 'growchange';
-            }else{
-                $data['keterangan'] = 'ok';
+            if($house2['keterangan'] == 'growchange'){
+                $data['keterangan'] = 'growchange';            
             }
-        }else{
-            $data['keterangan'] = 'ok';
         }
 
 		$egg1 = 0;
@@ -135,7 +142,7 @@ class Rcdata extends REST_Controller {
         }
 
         if ($kode_farm != '' AND $kode_kandang != '' AND $isidata != ''){
-            $this->response("OK", REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            $this->response($growawal, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         }else{
             $this->response([
                 'status' => FALSE,
