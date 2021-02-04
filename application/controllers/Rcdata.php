@@ -63,16 +63,7 @@ class Rcdata extends REST_Controller {
             if((int)$house2['growday'] > (int)$data['growday'] or $house2['keterangan'] == 'growchange'){
                 $data['keterangan'] = 'growchange';
             }else{
-                $jamreset = date_format(date_create($data['reset_time']),"H");
-                $jamnow = date_format(date_create(date("H:i:s")),"H");
-                $jamnow1 = date_format(date_create(date("H:i:s")),"H:i:s");
-
-                if((int)$data['growday'] == (int)$house2['growday'] AND (int)$jamnow >= (int)$jamreset){
-                    $data['growday'] = (int)$data['growday'] + 1;
-                    $data['keterangan'] = 'ok';
-                }else{
-                    $data['keterangan'] = $jamreset.' - '.$jamnow1;
-                }
+                $data['keterangan'] = 'ok';
             }
         }else{
             $data['keterangan'] = 'ok';
