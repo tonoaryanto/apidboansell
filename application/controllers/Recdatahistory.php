@@ -86,6 +86,13 @@ class Recdatahistory extends CI_Controller {
 				$house2 = $this->db->query($esql2)->row_array();
 
 				if($house2['growday'] != ''){
+					$date_set = date_format(date_create($value->date_create),"H").":00:00";
+					$house3 = $this->db->query("SELECT id FROM data_record WHERE date_record like '%".$date_set."' AND growday = '".$house['growday']."' AND periode = '".$house['periode']."' AND kode_perusahaan = '".$value->kode_perusahaan."' AND kode_kandang = '".$value->kode_kandang."' ORDER BY date_record ASC LIMIT 1")->num_rows();
+
+					if($house3 > 0){
+						$vsetdata['growday'] = $vsetdata['growday'] + 1;
+					}
+
 					$jam21 = date_format(date_create($house2['date_create']),"Y-m-d");
 					if($jam > $jam21){
 						$this->umum_model->insert('data_eggcounter',$vsetdata2);
