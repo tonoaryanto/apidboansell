@@ -57,6 +57,7 @@ class Rcdata extends REST_Controller {
         $house2 = $this->db->query("SELECT growday,keterangan,reset_time FROM data_record WHERE periode = '".$house['flock']."' AND kode_perusahaan = '".$kode_farm."' AND kode_kandang = '".$kode_kandang."' ORDER BY periode DESC, growday DESC LIMIT 1")->row_array();
 
         $data['periode'] = $house['flock'];
+        $data['date_create'] = date_format(date_create(date("Y-m-d H:i:s")),"Y-m-d H:i:s");
 
         if($house2['growday'] != ''){
             if((int)$house2['growday'] > (int)$data['growday'] or $house2['keterangan'] == 'growchange'){
@@ -97,6 +98,7 @@ class Rcdata extends REST_Controller {
             }else{$egg2 = $data["eggcounter2"];}
             $data['eggcounter2'] = $egg2;
         }
+
         if(isset($data["eggcounter3"]) != ''){
             if($data["eggcounter3"] == '8888' or $data["eggcounter3"] == '7777' or $data["eggcounter3"] == '9999'){$egg3 = 0;
             }else{$egg3 = $data["eggcounter3"];}
