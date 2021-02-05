@@ -68,7 +68,8 @@ class Rcdata extends REST_Controller {
 
         $data['keterangan'] = 'ok';
         if((int)$growawal != (int)$data['growday']){
-            $data['keterangan'] = (int)$growawal.' - '.(int)$data['growday'];
+            $data['keterangan'] = 'growchange';            
+            //$data['keterangan'] = (int)$growawal.' - '.(int)$data['growday'];
         }
         if($house2['growday'] != ''){
             if($house2['keterangan'] == 'growchange'){
