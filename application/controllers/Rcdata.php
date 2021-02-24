@@ -143,7 +143,7 @@ class Rcdata extends REST_Controller {
         }
 
         if ($kode_farm != '' AND $kode_kandang != '' AND $isidata != ''){
-            $this->response($growawal, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            $this->response('OK', REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         }else{
             $this->response([
                 'status' => FALSE,
