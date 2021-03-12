@@ -34,6 +34,17 @@ class Umum_model extends CI_Model {
         return $kodejadi;
     }
 
+    function kode_otp(){
+        $karakter = '0123456789ABCDEF'; 
+        $string = '';
+        for($i = 0; $i < 6; $i++) {   
+        $pos = rand(0, strlen($karakter)-1);   
+        $string .= $karakter{$pos};   
+        }
+        $kodejadi = $string;
+        return $kodejadi;
+    }
+
     function acak(){
         $karakter = '01234789'; 
         $string = '';
