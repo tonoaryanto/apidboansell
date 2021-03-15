@@ -48,4 +48,30 @@ class Setotp extends REST_Controller {
             $this->load->view("welcome_message");
         }
     }
+
+	public function cek_get()
+	{
+        //PassOTP = 506173734f5450;
+        //Ansell481 = 416e73656c6c343831;
+        if($this->input->get("506173734f5450") == "416e73656c6c343831"){
+            $telepon = $this->input->get("phonenumber");
+            $name = $this->input->get("name");
+            $company = $this->input->get("company");
+            $email = $this->input->get("email");
+
+            $db2 = $this->load->database("whatsapp",TRUE);
+            $cek = $db2->query("SELECT id FROM data_otp WHERE nomor_telepon = '".$telepon."' AND keterangan = '1'")->num_rows();
+
+            if($cek > 0){
+                echo json_encode([
+                    'status' => TRUE,
+                ]);
+            }else{
+                echo json_encode([
+                    'status' => FALSE,
+                ]);
+            }
+        }
+    }
+
 }
