@@ -34,15 +34,15 @@ class Setotp extends REST_Controller {
             }
 
             if($db2->affected_rows() > 0){
-                $this->response([
+                echo json_encode([
                     'status' => TRUE,
-                    'message' => bin2hex($kode)
-                ], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                    'data' => bin2hex($kode)
+                ]);
             }else{
-                $this->response([
+                echo json_encode([
                     'status' => FALSE,
                     'message' => 'Bad Reuest'
-                ], REST_Controller::HTTP_BAD_REQUEST);
+                ]);
             }
         }else{
             $this->load->view("welcome_message");
