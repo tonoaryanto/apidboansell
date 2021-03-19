@@ -34,6 +34,23 @@ class Umum_model extends CI_Model {
         return $kodejadi;
     }
 
+    function pinwa(){
+        $lop = 1;
+        for($ai = 0; $ai < $lop; $ai++) {
+            $karakter = '0123456789ABCDEF'; 
+            $string = '';
+            for($i = 0; $i < 5; $i++) {
+            $pos = rand(0, strlen($karakter)-1);   
+            $string .= $karakter{$pos};   
+            }
+            $kodejadi = $string;
+ 
+            $cek = $this->db->query("SELECT id FROM data_operator WHERE pinwa = '".$kodejadi."'")->num_rows();
+            if($cek > 0){$lop = $lop + 1;}
+        }
+        return $kodejadi;
+    }
+
     function kode_otp(){
         $karakter = '0123456789ABCDEF'; 
         $string = '';
