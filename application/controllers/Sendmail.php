@@ -71,7 +71,7 @@ class Sendmail extends CI_Controller {
         $mail = new PHPMailer();
         // SMTP configuration
         $mail->isSMTP();    
-        $mail->Host     = 'smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+        $mail->Host     = 'ssl://smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
         $mail->Username = 'anselljaya.dbo@gmail.com'; // user email
         $mail->Password = 'frontosabiru'; // password email
@@ -196,7 +196,7 @@ class Sendmail extends CI_Controller {
             $dtemail = $this->db->query("SELECT id,name,company,email,phonenumber,id_login FROM data_demo WHERE id = '".$id."'");
             if($dtemail->num_rows() > 0){
                 $setdtemail = $dtemail->row_array();
-                $login = $this->db->query("SELECT username,password FROM data_operator WHERE id_login = '".$setdtemail['id_login']."' ORDER BY id DESC LIMIT 1")->row_array();
+                $login = $this->db->query("SELECT username,password FROM data_operator WHERE id = '".$setdtemail['id_login']."' ORDER BY id DESC LIMIT 1")->row_array();
                 $username = $login['username'];
                 $password = $login['password'];
             }else{
@@ -216,7 +216,7 @@ class Sendmail extends CI_Controller {
             $mail = new PHPMailer();
             // SMTP configuration
             $mail->isSMTP();    
-            $mail->Host     = 'smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+            $mail->Host     = 'ssl://smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
             $mail->SMTPAuth = true;
             $mail->Username = 'anselljaya.dbo@gmail.com'; // user email
             $mail->Password = 'frontosabiru'; // password email
