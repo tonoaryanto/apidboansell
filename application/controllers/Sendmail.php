@@ -193,7 +193,7 @@ class Sendmail extends CI_Controller {
             $id = $this->input->get('id');
             $status = 0;
             $dtemail = [];
-            $dtemail = $this->db->query("SELECT id,name,company,email,phonenumber,id_login FROM data_demo WHERE phonenumber = '".$id."'");
+            $dtemail = $this->db->query("SELECT id,name,company,email,phonenumber,id_login FROM data_demo WHERE id = '".$id."'");
             if($dtemail->num_rows() > 0){
                 $setdtemail = $dtemail->row_array();
                 $login = $this->db->query("SELECT username,password FROM data_operator WHERE id_login = '".$setdtemail['id_login']."' ORDER BY id DESC LIMIT 1")->row_array();
