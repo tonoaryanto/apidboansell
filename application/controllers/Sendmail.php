@@ -74,7 +74,7 @@ class Sendmail extends CI_Controller {
         $mail->Host     = 'mail.anselljaya.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
         $mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
-        $mail->Username = 'no_reply@anselljaya.com'; // user email
+        $mail->Username = 'no-reply@anselljaya.com'; // user email
         $mail->Password = 'Ti1nepi0'; // password email
         $mail->SMTPSecure = 'tls';
         $mail->Port     = 587;
@@ -216,11 +216,11 @@ class Sendmail extends CI_Controller {
             // PHPMailer object
             $mail = new PHPMailer();
             // SMTP configuration
-            $mail->isSMTP();    
+            $mail->isSMTP();
             $mail->Host     = 'mail.anselljaya.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
             $mail->SMTPAuth = true;
             $mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
-            $mail->Username = 'no_reply@anselljaya.com'; // user email
+            $mail->Username = 'no-reply@anselljaya.com'; // user email
             $mail->Password = 'Ti1nepi0'; // password email
             $mail->SMTPSecure = 'tls';
             $mail->Port     = 587;
