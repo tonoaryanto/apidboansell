@@ -71,21 +71,22 @@ class Sendmail extends CI_Controller {
         $mail = new PHPMailer();
         // SMTP configuration
         $mail->isSMTP();    
-        $mail->Host     = 'ssl://smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+        $mail->Host     = 'mail.anselljaya.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
         $mail->SMTPAuth = true;
-        $mail->Username = 'anselljaya.dbo@gmail.com'; // user email
-        $mail->Password = 'frontosabiru'; // password email
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port     = 465;
+        $mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
+        $mail->Username = 'no_reply@anselljaya.com'; // user email
+        $mail->Password = 'Ti1nepi0'; // password email
+        $mail->SMTPSecure = 'tls';
+        $mail->Port     = 587;
 
-        $mail->setFrom('anselljaya.dbo@gmail.com', 'Ansell Business Intelligence');
-        $mail->addReplyTo('anselljaya.dbo@gmail.com', 'Ansell Business Intelligence');
+        $mail->setFrom('no-reply@anselljaya.com', 'no-reply');
+        $mail->addReplyTo('no-reply@anselljaya.com', 'no-reply');
         
         // email tujuan mu $setdtemail['name']
         $mail->addAddress($setdtemail['email']);
             
         // Email subject
-        $mail->Subject = 'Request a program demo approved'; //subject email
+        $mail->Subject = 'Request a demo program approved'; //subject email
 
         // Set email format to HTML
         $mail->isHTML(true);
@@ -216,21 +217,22 @@ class Sendmail extends CI_Controller {
             $mail = new PHPMailer();
             // SMTP configuration
             $mail->isSMTP();    
-            $mail->Host     = 'ssl://smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+            $mail->Host     = 'mail.anselljaya.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
             $mail->SMTPAuth = true;
-            $mail->Username = 'anselljaya.dbo@gmail.com'; // user email
-            $mail->Password = 'frontosabiru'; // password email
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port     = 465;
+            $mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
+            $mail->Username = 'no_reply@anselljaya.com'; // user email
+            $mail->Password = 'Ti1nepi0'; // password email
+            $mail->SMTPSecure = 'tls';
+            $mail->Port     = 587;
 
-            $mail->setFrom('anselljaya.dbo@gmail.com', 'Ansell Business Intelligence');
-            $mail->addReplyTo('anselljaya.dbo@gmail.com', 'Ansell Business Intelligence');
+            $mail->setFrom('no-reply@anselljaya.com', 'no-reply');
+            $mail->addReplyTo('no-reply@anselljaya.com', 'no-reply');
             
             // email tujuan mu $setdtemail['name']
             $mail->addAddress($setdtemail['email']);
                 
             // Email subject
-            $mail->Subject = 'Request a program demo approved'; //subject email
+            $mail->Subject = 'Request a demo program approved'; //subject email
 
             // Set email format to HTML
             $mail->isHTML(true);
