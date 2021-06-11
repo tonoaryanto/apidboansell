@@ -581,4 +581,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     _taboola.push({flush: true});
   </script><noscript><link data-avlabs-exclude-css="1"  rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT%20Sans%7CLato%3A400%2C700%2C400italic%2C700italic%7COswald%3A400%2C700&display=swap" /><link data-avlabs-exclude-css="1"  rel="stylesheet" href="https://www.html5canvastutorials.com/wp-content/cache/min/1/e583fe5bd2c3dfdfa3de3994662a3d4c.css" media="all" data-minify="1" /><link data-avlabs-exclude-css="1"  rel="stylesheet" href="/libraries/codeMirror/lib/codemirror.css"></noscript>
   
-  </body>      
+  </body>
