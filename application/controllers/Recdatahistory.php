@@ -29,9 +29,10 @@ class Recdatahistory extends CI_Controller {
 
 				$setdata = $realtime->row_array($urutan);
 				$vsetdata = $this->arraydb('house',$setdata,$jam);
-
+				
 				if($house['growday'] != ''){
 					$jam2 = date_format(date_create($house['date_create']),"Y-m-d H");
+					$jam3 = date_format(date_create(date("Y-m-d H:i:s")),"Y-m-d H");
 					if($jam > $jam2){
 						$this->umum_model->insert('data_record',$vsetdata);
 						echo 'Hs simpan data terbaru';
@@ -40,6 +41,26 @@ class Recdatahistory extends CI_Controller {
 						echo '<br>';
 						echo $jam;
 						echo '<br>';
+					}else if($jam3 > $jam AND $jam3 != $jam2){
+						$value2 = $this->db->query("SELECT flock,reset_time,date_in,star_growday FROM data_kandang WHERE id = '".$value->kode_kandang."'")->row_array();
+						$date_in  = date_format(date_create($value2['date_in']),"Y-m-d")." ".date_format(date_create($value2['reset_time']),"H:i:s");
+						$difftgl1 = date_diff(date_create($date_in),date_create($jam3.":00:00"));
+						$growawal = (int)$value2['star_growday'] + (int)$difftgl1->format("%R%a");
+						$datakosong = [
+							"kode_perusahaan" => $value->kode_perusahaan,
+							"kode_kandang" => $value->kode_kandang,
+							"periode" => $value2['flock'],
+							"growday" => $growawal,
+							"date_create" => date("Y-m-d H:i:s"),
+							"date_record" => $jam3.":00:00",
+							"keterangan" => "norecord",
+							"reset_time" => $value2['reset_time']
+						];
+						$this->umum_model->insert('data_record',$datakosong);
+
+						echo "No Record";
+						echo "<br>";
+						echo "<br>";
 					}else{
 						echo 'Hs Tidak ada data terbaru';
 						echo '<br>';
@@ -80,6 +101,7 @@ class Recdatahistory extends CI_Controller {
 
 				if($house2['growday'] != ''){
 					$jam21 = date_format(date_create($house2['date_create']),"Y-m-d");
+					$jam3 = date_format(date_create(date("Y-m-d H:i:s")),"Y-m-d");
 					if($jam > $jam21){
 						$this->umum_model->insert('data_eggcounter',$vsetdata2);
 						echo 'Egg simpan data terbaru';
@@ -88,6 +110,26 @@ class Recdatahistory extends CI_Controller {
 						echo '<br>';
 						echo $jam;
 						echo '<br>';
+					}else if($jam3 > $jam AND $jam3 != $jam21){
+						$value2 = $this->db->query("SELECT flock,reset_time,date_in,star_growday FROM data_kandang WHERE id = '".$value->kode_kandang."'")->row_array();
+						$date_in  = date_format(date_create($value2['date_in']),"Y-m-d");
+						$difftgl1 = date_diff(date_create($date_in),date_create($jam3));
+						$growawal = (int)$value2['star_growday'] + (int)$difftgl1->format("%R%a");
+						$datakosong = [
+							"kode_perusahaan" => $value->kode_perusahaan,
+							"kode_kandang" => $value->kode_kandang,
+							"periode" => $value2['flock'],
+							"growday" => $growawal,
+							"date_create" => date("Y-m-d H:i:s"),
+							"date_record" => $jam3." 00:00:00",
+							"keterangan" => "norecord",
+							"reset_time" => $value2['reset_time']
+						];
+						$this->umum_model->insert('data_eggcounter',$datakosong);
+
+						echo "No Record";
+						echo "<br>";
+						echo "<br>";
 					}else{
 						echo 'Egg Tidak ada data terbaru';
 						echo '<br>';
