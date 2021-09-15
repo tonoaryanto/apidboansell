@@ -53,7 +53,7 @@ class Recdatahistory extends CI_Controller {
 							"growday" => $growawal,
 							"date_create" => date("Y-m-d H:i:s"),
 							"date_record" => $jam3.":00:00",
-							"keterangan" => "norecord",
+							"keterangan" => "ok",
 							"reset_time" => $value2['reset_time']
 						];
 						$this->umum_model->insert('data_record',$datakosong);

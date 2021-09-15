@@ -53,7 +53,7 @@ class Recegg extends CI_Controller {
 							"growday" => $growawal1,
 							"date_create" => date("Y-m-d H:i:s"),
 							"date_record" => $jam31." 00:00:00",
-							"keterangan" => "norecord",
+							"keterangan" => "ok",
 							"reset_time" => $value2['reset_time']
 						];
 						$this->umum_model->insert('data_eggcounter',$datakosong1);
